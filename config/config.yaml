@@ -3,5 +3,5 @@ artifacts_root: artifacts
 
 data_ingestion: 
   root_dir: artifacts/data_ingestion
-  source_URL: https://raw.githubusercontent.com/fbrownp/datasets/main/Telco-Customer-Churn.csv
+  source_URL: https://raw.githubusercontent.com/fbrownp/datasets/main/Telco_churn_corrected.csv
   local_data_file: artifacts/data_ingestion/main_data.csv
