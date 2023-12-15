@@ -34,24 +34,29 @@ jobs:
         id: checkout
         uses: actions/checkout@v2
 
-      - name: install dvc
+      - name: Packages
         run: pip install -r requirements.txt
+
+      - name: MLFlow authentication
+        run:  os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/FBrownp/ml-churn.mlflow"
+
+      - name: MLFlow authentication
+        run:  os.environ["MLFLOW_TRACKING_USERNAME"]="FBrownp"
+
+      - name: MLFlow authentication
+        run:  os.environ["MLFLOW_TRACKING_PASSWORD"]= ${{secrets.DAGSHUBKEY}}
 
       - name: Connect to repo
         run:
-          dvc remote default origin
-
-      - name: Authentication
-        run:
-          dvc remote modify origin --local auth basic 
+          dvc remote default origin-s3
       
       - name: User
         run:
-          dvc remote modify origin --local user FBrownp 
+          dvc remote modify origin-s3 --local access_key_id ${{secrets.DAGSHUBKEY}}
       
       - name: Password
         run:
-          dvc remote modify origin --local password ${{secrets.DAGSHUBKEY}}
+          dvc remote modify origin-s3 --local secret_access_key ${{secrets.DAGSHUBKEY}}
 
       - name: Run DVC
         run: dvc repro
@@ -64,7 +69,7 @@ jobs:
           file-pattern: dvc.lock
 
       - name: DCV push
-        run: dvc push
+        run: dvc push -r origin-s3
         
   # Deploy:
   #   name: deploy to docker images

@@ -5,7 +5,7 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: a594bf07918c0fa4941b907eb76392db
+      md5: 9cddd1520e07a70941b2b28975a2ff25
       size: 1182
     - path: src/Churn_analysis/components/data_ingestion.py
       hash: md5
@@ -26,7 +26,7 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: a594bf07918c0fa4941b907eb76392db
+      md5: 9cddd1520e07a70941b2b28975a2ff25
       size: 1182
     - path: schema.yaml
       hash: md5
@@ -59,7 +59,7 @@ stages:
       size: 23
     - path: config/config.yaml
       hash: md5
-      md5: a594bf07918c0fa4941b907eb76392db
+      md5: 9cddd1520e07a70941b2b28975a2ff25
       size: 1182
     - path: src/Churn_analysis/components/data_transformation.py
       hash: md5
@@ -84,7 +84,7 @@ stages:
       size: 985371
     - path: config/config.yaml
       hash: md5
-      md5: a594bf07918c0fa4941b907eb76392db
+      md5: 9cddd1520e07a70941b2b28975a2ff25
       size: 1182
     - path: params.yaml
       hash: md5
@@ -96,8 +96,8 @@ stages:
       size: 543
     - path: src/Churn_analysis/components/data_clustering.py
       hash: md5
-      md5: 7aee102e15669873b8688fbf6441fbc6
-      size: 1937
+      md5: e66f85e6c1a1a35fa9a44fbfae7bbdbd
+      size: 1936
     - path: src/Churn_analysis/pipeline/stage04_data_clustering.py
       hash: md5
       md5: b44634cf8b7827fd7a4ee3d27e66710e
@@ -105,8 +105,8 @@ stages:
     outs:
     - path: artifacts/data_clustering
       hash: md5
-      md5: 0c179858f70dbdef09de1d7836838961.dir
-      size: 939624
+      md5: 22f3b95fd4f440bd2f972ad56dc0e89c.dir
+      size: 939567
       nfiles: 2
   model_trainer:
     cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
@@ -117,7 +117,7 @@ stages:
       size: 629468
     - path: config/config.yaml
       hash: md5
-      md5: a594bf07918c0fa4941b907eb76392db
+      md5: 9cddd1520e07a70941b2b28975a2ff25
       size: 1182
     - path: params.yaml
       hash: md5
@@ -146,7 +146,7 @@ stages:
       size: 270245
     - path: config/config.yaml
       hash: md5
-      md5: a594bf07918c0fa4941b907eb76392db
+      md5: 9cddd1520e07a70941b2b28975a2ff25
       size: 1182
     - path: params.yaml
       hash: md5

@@ -5,6 +5,7 @@ xgboost
 scikit-learn
 joblib
 dvc
+dvc-s3
 python-box==6.0.2
 pyYAML
 tqdm
