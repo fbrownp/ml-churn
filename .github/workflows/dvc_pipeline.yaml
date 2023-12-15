@@ -37,24 +37,27 @@ jobs:
       - name: install dvc
         run: pip install -r requirements.txt
 
-      - name: Pull data from DVC
+      - name: Connect to repo
         run:
           dvc remote default origin
 
-      - name: Pull data from DVC
+      - name: Authentication
         run:
           dvc remote modify origin --local auth basic 
       
-      - name: Pull data from DVC
+      - name: User
         run:
           dvc remote modify origin --local user FBrownp 
       
-      - name: Pull data from DVC
+      - name: Password
         run:
           dvc remote modify origin --local password ${{secrets.DAGSHUBKEY}}
 
       - name: Run DVC
         run: dvc repro
+
+      - name: DVC push
+        run: dvc push
         
   # Deploy:
   #   name: deploy to docker images
