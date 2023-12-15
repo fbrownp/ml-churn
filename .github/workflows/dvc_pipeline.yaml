@@ -9,11 +9,7 @@ on:
       - src/**
       - data/*
       - .github/workflow/dvc_pipeline.yaml
-    paths-ignore:
-      - 'README.md'
-      - 'Dockerfile'
-      - 'template.py'
-      - 'setup.py'
+
 
 jobs: 
   Integration: 
