@@ -38,13 +38,13 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: MLFlow authentication
-        run:  python os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/FBrownp/ml-churn.mlflow"
+        run:  python3 os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/FBrownp/ml-churn.mlflow"
 
       - name: MLFlow authentication
-        run:  python os.environ["MLFLOW_TRACKING_USERNAME"]="FBrownp"
+        run:  python3 os.environ["MLFLOW_TRACKING_USERNAME"]="FBrownp"
 
       - name: MLFlow authentication
-        run:  python os.environ["MLFLOW_TRACKING_PASSWORD"]= ${{secrets.DAGSHUBKEY}}
+        run:  python3 os.environ["MLFLOW_TRACKING_PASSWORD"]= ${{secrets.DAGSHUBKEY}}
 
       - name: Connect to repo
         run:
