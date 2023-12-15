@@ -57,13 +57,13 @@ stages:
     - artifacts\model_trainer\
 
   
-  # model_evaluation:
-  #   cmd: python src\XGboost_for_slopes\pipeline\stage05_model_evaluation.py
-  #   deps:
-  #   - src\XGboost_for_slopes\pipeline\stage05_model_evaluation.py
-  #   - config\config.yaml
-  #   - artifacts\data_transformation\test.csv
-  #   - artifacts\data_transformation\transformation.pkl
-  #   - src\XGboost_for_slopes\components\model_evaluation.py
-  #   outs:
-  #   - artifacts\model_evaluation\
+  model_evaluation:
+    cmd: python src\Churn_analysis\pipeline\stage06_model_evaluation.py
+    deps:
+    - src\Churn_analysis\pipeline\stage06_model_evaluation.py
+    - config\config.yaml
+    - artifacts\data_transformation\test.csv
+    - src\Churn_analysis\components\model_evaluation.py
+    - params.yaml
+    outs:
+    - artifacts\model_evaluation\

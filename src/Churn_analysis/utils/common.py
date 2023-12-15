@@ -183,10 +183,10 @@ def calculate_metrics(conf_matrix):
         'Recall': recall,
         'Specificity': specificity,
         'F1 Score': f1_score,
-        'False Positive Rate (FPR)': fpr,
-        'False Discovery Rate (FDR)': fdr,
-        'False Negative Rate (FNR)': fnr,
-        'Matthews Correlation Coefficient (MCC)': mcc,
+        'FPR': fpr,
+        'FDR': fdr,
+        'FNR': fnr,
+        'MCC': mcc,
     }
 
     return metrics_dict

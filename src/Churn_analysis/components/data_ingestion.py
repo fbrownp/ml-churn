@@ -2,7 +2,7 @@ import os
 import urllib.request as request
 from Churn_analysis import logger
 from Churn_analysis.utils.common import get_size
-
+from pathlib import Path
 from Churn_analysis.entity.config_entity import DataIngestionConfig
 
 
