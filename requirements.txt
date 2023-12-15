@@ -4,7 +4,7 @@ seaborn
 xgboost
 scikit-learn
 joblib
-dvc
+dvc==2.8.1
 python-box==6.0.2
 pyYAML
 tqdm
