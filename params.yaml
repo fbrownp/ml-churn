@@ -12,3 +12,6 @@ XGBoost:
 
 KPrototypes:
   N_CLUSTERS: 3 
+
+AUCROC: 
+  THRESHOLD: 0.4

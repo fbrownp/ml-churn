@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 import base64
 import dill
-
+import numpy as np
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -146,3 +146,47 @@ def save_object(file_path, obj):
 
     except Exception as e:
         raise e
+    
+
+
+def calculate_metrics(conf_matrix):
+    """
+    Calculate various performance metrics from a confusion matrix.
+
+    Parameters:
+    - conf_matrix: 2x2 NumPy array, confusion matrix with rows representing actual classes
+                  and columns representing predicted classes.
+
+    Returns:
+    - metrics_dict: Dictionary containing calculated performance metrics.
+    """
+    TP = conf_matrix[1, 1]  # True Positives
+    TN = conf_matrix[0, 0]  # True Negatives
+    FP = conf_matrix[0, 1]  # False Positives
+    FN = conf_matrix[1, 0]  # False Negatives
+
+    # Calculate metrics
+    accuracy = (TP + TN) / (TP + TN + FP + FN)
+    precision = TP / (TP + FP)
+    recall = TP / (TP + FN)
+    specificity = TN / (TN + FP)
+    f1_score = 2 * (precision * recall) / (precision + recall)
+    fpr = FP / (FP + TN)
+    fdr = FP / (TP + FP)
+    fnr = FN / (TP + FN)
+    mcc = (TP * TN - FP * FN) / np.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
+
+    # Create a dictionary to store the metrics
+    metrics_dict = {
+        'Accuracy': accuracy,
+        'Precision': precision,
+        'Recall': recall,
+        'Specificity': specificity,
+        'F1 Score': f1_score,
+        'False Positive Rate (FPR)': fpr,
+        'False Discovery Rate (FDR)': fdr,
+        'False Negative Rate (FNR)': fnr,
+        'Matthews Correlation Coefficient (MCC)': mcc,
+    }
+
+    return metrics_dict
