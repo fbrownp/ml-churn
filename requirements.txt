@@ -19,4 +19,5 @@ matplotlib
 pydantic
 fastapi
 uvicorn
+kmodes
 -e .
