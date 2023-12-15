@@ -39,10 +39,6 @@ jobs:
 
       - name: Pull data from DVC
         run:
-          dvc remote add origin https://dagshub.com/FBrownp/ml-churn.dvc
-      
-      - name: Pull data from DVC
-        run:
           dvc remote default origin
 
       - name: Pull data from DVC
