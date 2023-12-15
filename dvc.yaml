@@ -1,69 +1,69 @@
 stages:
 
   data_ingestion:
-    cmd: python src\Churn_analysis\pipeline\stage01_data_ingestion.py
+    cmd: python src/Churn_analysis/pipeline/stage01_data_ingestion.py
     deps:
-      - src\Churn_analysis\pipeline\stage01_data_ingestion.py
-      - config\config.yaml
+      - src/Churn_analysis/pipeline/stage01_data_ingestion.py
+      - config/config.yaml
       - src/Churn_analysis/components/data_ingestion.py
     outs: 
-      - artifacts\data_ingestion\
+      - artifacts/data_ingestion/
 
   
   data_validation:
-    cmd: python src\Churn_analysis\pipeline\stage02_data_validation.py
+    cmd: python src/Churn_analysis/pipeline/stage02_data_validation.py
     deps:
-    - src\Churn_analysis\pipeline\stage02_data_validation.py
-    - config\config.yaml
+    - src/Churn_analysis/pipeline/stage02_data_validation.py
+    - config/config.yaml
     - schema.yaml
-    - src\Churn_analysis\components\data_validation.py
+    - src/Churn_analysis/components/data_validation.py
     outs:
-    - artifacts\data_validation\
+    - artifacts/data_validation/
   
   data_transformation:
-    cmd: python src\Churn_analysis\pipeline\stage03_data_transformation.py
+    cmd: python src/Churn_analysis/pipeline/stage03_data_transformation.py
     deps:
-    - src\Churn_analysis\pipeline\stage03_data_transformation.py
-    - config\config.yaml
+    - src/Churn_analysis/pipeline/stage03_data_transformation.py
+    - config/config.yaml
     - artifacts/data_validation/status.txt
     - artifacts/data_validation/status_dtype.txt
-    - src\Churn_analysis\components\data_transformation.py
+    - src/Churn_analysis/components/data_transformation.py
     outs:
-    - artifacts\data_transformation\
+    - artifacts/data_transformation/
 
 
   data_clustering:
-    cmd: python src\Churn_analysis\pipeline\stage04_data_clustering.py
+    cmd: python src/Churn_analysis/pipeline/stage04_data_clustering.py
     deps:
-    - src\Churn_analysis\pipeline\stage04_data_clustering.py
-    - config\config.yaml
+    - src/Churn_analysis/pipeline/stage04_data_clustering.py
+    - config/config.yaml
     - params.yaml
     - schema.yaml
-    - artifacts\data_ingestion\main_data.csv
-    - src\Churn_analysis\components\data_clustering.py
+    - artifacts/data_ingestion/main_data.csv
+    - src/Churn_analysis/components/data_clustering.py
     outs:
-    - artifacts\data_clustering
+    - artifacts/data_clustering
 
 
   model_trainer:
-    cmd: python src\Churn_analysis\pipeline\stage05_model_training.py
+    cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
     deps:
-    - src\Churn_analysis\pipeline\stage05_model_training.py
-    - config\config.yaml
+    - src/Churn_analysis/pipeline/stage05_model_training.py
+    - config/config.yaml
     - params.yaml
-    - artifacts\data_transformation\train.csv
-    - src\Churn_analysis\components\model_training.py
+    - artifacts/data_transformation/train.csv
+    - src/Churn_analysis/components/model_training.py
     outs:
-    - artifacts\model_trainer\
+    - artifacts/model_trainer/
 
   
   model_evaluation:
-    cmd: python src\Churn_analysis\pipeline\stage06_model_evaluation.py
+    cmd: python src/Churn_analysis/pipeline/stage06_model_evaluation.py
     deps:
-    - src\Churn_analysis\pipeline\stage06_model_evaluation.py
-    - config\config.yaml
-    - artifacts\data_transformation\test.csv
-    - src\Churn_analysis\components\model_evaluation.py
+    - src/Churn_analysis/pipeline/stage06_model_evaluation.py
+    - config/config.yaml
+    - artifacts/data_transformation/test.csv
+    - src/Churn_analysis/components/model_evaluation.py
     - params.yaml
     outs:
-    - artifacts\model_evaluation\
+    - artifacts/model_evaluation/
