@@ -3,7 +3,8 @@ from Churn_analysis.utils.common import create_directories,read_yaml
 from Churn_analysis.entity.config_entity import (DataIngestionConfig,
                                                      DataValidationConfig,
                                                      DataTransformationConfig,
-                                                     DataClusteringConfig)
+                                                     DataClusteringConfig,
+                                                     ModelTrainerConfig)
                                                     #  ModelTrainerConfig,
                                                     #  ModelEvaluationConfig)
 
@@ -70,6 +71,22 @@ class ConfigurationManager:
             train_data_path = config.train_data_path,
             model_name = config.model_name,
             n_clustering = params.N_CLUSTERS,
+            target_column= schema.target_1
+            )
+        return model_trainer_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.XGBoost
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir = config.root_dir,
+            train_data_path = config.train_data_path,
+            model_name_1 = config.model_name_1,
+            params = params,
             target_column= schema.target_1
             )
         return model_trainer_config

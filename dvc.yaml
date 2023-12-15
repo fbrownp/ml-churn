@@ -45,17 +45,16 @@ stages:
     - artifacts\data_clustering
 
 
-  # model_trainer:
-  #   cmd: python src\XGboost_for_slopes\pipeline\stage04_model_trainer.py
-  #   deps:
-  #   - src\XGboost_for_slopes\pipeline\stage04_model_trainer.py
-  #   - config\config.yaml
-  #   - params.yaml
-  #   - artifacts\data_transformation\train.csv
-  #   - artifacts\data_transformation\transformation.pkl
-  #   - src\XGboost_for_slopes\components\model_trainer.py
-  #   outs:
-  #   - artifacts\model_trainer\
+  model_trainer:
+    cmd: python src\Churn_analysis\pipeline\stage05_model_training.py
+    deps:
+    - src\Churn_analysis\pipeline\stage05_model_training.py
+    - config\config.yaml
+    - params.yaml
+    - artifacts\data_transformation\train.csv
+    - src\Churn_analysis\components\model_training.py
+    outs:
+    - artifacts\model_trainer\
 
   
   # model_evaluation:

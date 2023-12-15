@@ -1,15 +1,14 @@
 XGBoost:
-  N_ESTIMATORS: 400
-  ETA : 0.005
-  MAX_DEPTH : 4
-  ALPHA: 0.03
-  LAMBDA: 0.03
-  EVAL_METRIC: "aucpr"
-  SUBSAMPLE: 0.5
-  COLSAMPLE_BYTREE: 0.5
-  GAMMA : 5
-  LEARNING_RATE: 0.05
-  SCALE_POS_WEIGHT: 1.5
+  n_estimators: 400
+  eta : 0.005
+  max_depth : 4
+  reg_alpha: 0.03
+  eval_metric: "aucpr"
+  subsample: 0.5
+  colsample_bytree: 0.5
+  gamma : 5
+  learning_rate: 0.05
+  scale_pos_weight: 1.5
 
 KPrototypes:
   N_CLUSTERS: 3 

@@ -30,3 +30,12 @@ class DataClusteringConfig:
     model_name: str
     n_clustering: int
     target_column: str
+
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    train_data_path: Path
+    model_name_1: str
+    params: dict
+    target_column: float
