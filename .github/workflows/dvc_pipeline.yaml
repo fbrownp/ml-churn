@@ -56,7 +56,14 @@ jobs:
       - name: Run DVC
         run: dvc repro
 
-      - name: DVC push
+      - name: Commit changes in dvc.lock
+        uses: stefanzweifel/git-auto-commit-action@v4 
+        with:
+          commit_message: Commit changes in dvc.lock
+          branch: ml-churn
+          file-pattern: dvc.lock
+
+      - name: DCV push
         run: dvc push
         
   # Deploy:
