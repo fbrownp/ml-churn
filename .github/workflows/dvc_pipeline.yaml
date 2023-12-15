@@ -43,7 +43,7 @@ jobs:
           dvc remote default origin
           dvc remote modify origin --local auth basic 
           dvc remote modify origin --local user FBrownp 
-          dvc remote modify origin --local password ${{cceabdf6d4f5adc126b6cb03cc7cc4bf568e2591}}
+          dvc remote modify origin --local password ${{secrets.DAGSHUBKEY}}
           dvc pull
           
 
