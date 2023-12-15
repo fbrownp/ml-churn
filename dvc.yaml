@@ -31,6 +31,20 @@ stages:
     outs:
     - artifacts\data_transformation\
 
+
+  data_clustering:
+    cmd: python src\Churn_analysis\pipeline\stage04_data_clustering.py
+    deps:
+    - src\Churn_analysis\pipeline\stage04_data_clustering.py
+    - config\config.yaml
+    - params.yaml
+    - schema.yaml
+    - artifacts\data_ingestion\main_data.csv
+    - src\Churn_analysis\components\data_clustering.py
+    outs:
+    - artifacts\data_clustering
+
+
   # model_trainer:
   #   cmd: python src\XGboost_for_slopes\pipeline\stage04_model_trainer.py
   #   deps:

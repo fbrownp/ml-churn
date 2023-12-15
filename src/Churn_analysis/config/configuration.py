@@ -2,7 +2,8 @@ from Churn_analysis.constants import*
 from Churn_analysis.utils.common import create_directories,read_yaml
 from Churn_analysis.entity.config_entity import (DataIngestionConfig,
                                                      DataValidationConfig,
-                                                     DataTransformationConfig)
+                                                     DataTransformationConfig,
+                                                     DataClusteringConfig)
                                                     #  ModelTrainerConfig,
                                                     #  ModelEvaluationConfig)
 
@@ -56,3 +57,19 @@ class ConfigurationManager:
             transformation_path= config.transformation_path
             )
         return data_transformation_config
+    
+    def get_data_clustering_config(self) -> DataClusteringConfig:
+        config = self.config.data_clustering
+        params = self.params.KPrototypes
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = DataClusteringConfig(
+            root_dir = config.root_dir,
+            train_data_path = config.train_data_path,
+            model_name = config.model_name,
+            n_clustering = params.N_CLUSTERS,
+            target_column= schema.target_1
+            )
+        return model_trainer_config

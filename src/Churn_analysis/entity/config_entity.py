@@ -21,3 +21,12 @@ class DataTransformationConfig:
     root_dir: Path
     data_path: Path
     transformation_path: Path
+
+
+@dataclass(frozen=True)
+class DataClusteringConfig:
+    root_dir: Path
+    train_data_path: Path
+    model_name: str
+    n_clustering: int
+    target_column: str
