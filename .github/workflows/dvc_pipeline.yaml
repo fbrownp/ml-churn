@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-    paths:
-      - config/**
-      - src/**
-      - data/*
-      - .github/workflow/dvc_pipeline.yaml
+    paths-ignore:
+      - 'README.md'
+      - 'Dockerfile'
+      - 'template.py'
+      - 'setup.py'
 
 
 jobs: 
