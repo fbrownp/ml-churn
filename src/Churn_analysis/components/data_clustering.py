@@ -13,7 +13,7 @@ class DataClustering():
 
         """
         This function is responsible clustering the data
-        by KPrototypes methodD
+        by KPrototypes method
         """
 
         # Read data
