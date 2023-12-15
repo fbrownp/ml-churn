@@ -53,10 +53,6 @@ jobs:
         run:
           dvc remote modify origin --local password ${{secrets.DAGSHUBKEY}}
 
-      - name: Pull data from DVC
-        run:
-          dvc pull    
-
       - name: Run DVC
         run: dvc repro
         
