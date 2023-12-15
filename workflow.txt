@@ -1,0 +1,9 @@
+1. config.yaml
+2. schema.yaml
+3. params.yaml
+4. Entity folder
+5. configuration manager in src/config
+6. components
+7. pipeline
+8. update main
+9. update app.py
