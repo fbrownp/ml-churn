@@ -1,0 +1,65 @@
+name: Workflow
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - config/**
+      - src/**
+      - data/*
+      - .github/workflow/dvc_pipeline.yaml
+    paths-ignore:
+      - 'README.md'
+      - 'Dockerfile'
+      - 'template.py'
+      - 'setup.py'
+
+jobs: 
+  Integration: 
+    name: Continous Integration
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Lint code
+        run: echo "Linting repository"
+
+      - name: Run unit tests
+        run: echo "Running unit tests"
+
+
+  RunCode:
+    name: Running the code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+      - id: checkout
+      - uses: actions/checkout@v2
+
+      - name: install dvc
+        run: pip install dvc
+
+      - name: Pull data from DVC
+        run:
+          dvc remote default origin
+          dvc pull
+
+      - name: Run DVC
+        run: dvc repro
+  # Deploy:
+  #   name: deploy to docker images
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@main
+  #   - name: build and push to docker
+  #     uses: docker/build-push-action@v1
+  #     with:
+  #       username: ${{secrets.DOCKER_USERNAME}}
+  #       password: ${{secrets.DOCKER_PASSWORD}}
+  #       repository: ${{github.repository}}
+  #       tag_with_ref: true
+  #       tag_with_sha: true
+  #       tags: ${{github.sha}}
+      
