@@ -10,6 +10,11 @@ on:
       - 'template.py'
       - 'setup.py'
       - 'artifacts'
+      - 'research'
+      - 'app.py'
+      - 'main.py'
+      - '.gitattributes'
+
 
 env:
   DAGSHUGKEY: ${{secrets.DAGSHUBKEY}}
