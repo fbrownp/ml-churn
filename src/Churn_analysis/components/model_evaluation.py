@@ -12,7 +12,7 @@ from pathlib import Path
 from Churn_analysis.entity.config_entity import ModelEvaluationConfig
 
 
-DASGHUB_KEY = os.environ["DASGHUBKEY"]
+DASGHUB_KEY = os.environ["DAGSHUGKEY"]
 
 class ModelEvaluation():
     def __init__(self, config: ModelEvaluationConfig):
