@@ -1,10 +1,11 @@
 import os 
 from Churn_analysis import logger
 import pandas as pd
-from sklearn.preprocessing import StandardScaler,LabelEncoder
+from sklearn.preprocessing import StandardScaler,OrdinalEncoder,OneHotEncoder
 from sklearn.model_selection import train_test_split
 from Churn_analysis.entity.config_entity import DataTransformationConfig
-
+from Churn_analysis.utils.common import save_object
+from sklearn.compose import ColumnTransformer
 
 
 class DataTransformation():
@@ -21,36 +22,45 @@ class DataTransformation():
         """
         # Reading files
         data = pd.read_csv(self.config.data_path)
-        names = list(data.columns[[6,7,8,9,10,11,12,13,14,15,16,17]])
-        
-        # Applying get_dummies
-        for name in names: 
-            data = pd.get_dummies(data, columns=[name], dtype=int)
 
 
-        # Dropping innecesary columns
-        data.drop(columns=["customerID","OnlineSecurity_No internet service","OnlineBackup_No internet service",
-                           "DeviceProtection_No internet service","TechSupport_No internet service","StreamingTV_No internet service",
-                           "StreamingMovies_No internet service"], inplace=True)
-        
-
-        Ord_encoder = LabelEncoder()
-        Std_encoder = StandardScaler()
 
         Ordinal_variables = ["gender", "SeniorCitizen","Partner","Dependents","Churn"]
         Numeric_variables = ["tenure","MonthlyCharges","TotalCharges"]
+        One_hot_variables = ["InternetService","OnlineSecurity","OnlineBackup","DeviceProtection","TechSupport","StreamingTV","StreamingMovies"]
 
-        # Applying transformations
-        data[Ordinal_variables] = data[Ordinal_variables].apply(lambda col: Ord_encoder.fit_transform(col))
-        data[Numeric_variables] = Std_encoder.fit_transform(data[Numeric_variables])
+
+        #------------Complete data transformation-----------------------------------------------------------
+        preprocessor = ColumnTransformer(transformers=[
+                                        ("Ordinal", OrdinalEncoder(), Ordinal_variables),
+                                        ("Standard", StandardScaler(), Numeric_variables),
+                                        ("Onehot", OneHotEncoder(), One_hot_variables)
+                                        ])
+
+        input_encoder = preprocessor.fit(data.drop(columns=["customerID"]))
+
+        Encoded_data = input_encoder.transform(data.drop(columns=["customerID"]))
+        Encoded_df = pd.DataFrame(Encoded_data , columns= preprocessor.get_feature_names_out())
+
+        Encoded_df.drop(columns= ["Onehot__OnlineSecurity_No internet service",
+                                  "Onehot__OnlineBackup_No internet service",
+                                  "Onehot__DeviceProtection_No internet service",
+                                  "Onehot__TechSupport_No internet service",
+                                  "Onehot__StreamingTV_No internet service",
+                                  "Onehot__StreamingMovies_No internet service"], inplace= True)
+        
+        # --------------------------------------------------------------------------------------------------
+        save_object(self.config.transformation_path, input_encoder)
 
         # Splitting the data
-        train, test = train_test_split(data,test_size=0.3, random_state=42, stratify=data["Churn"] )
+        train, test = train_test_split(Encoded_df,test_size=0.3, random_state=42, stratify=data["Churn"] )
+        
         train.to_csv(os.path.join(self.config.root_dir, "train.csv"), index= False)
         test.to_csv(os.path.join(self.config.root_dir, "test.csv"), index= False)
 
-        strat_test  = test.Churn[test["Churn"]==1].sum()/test.Churn.count()
-        strat_train = train.Churn[train["Churn"]==1].sum()/train.Churn.count()
-        logger.info(f"Transformed and splitted data, stratification of train data {strat_train}, stratification of test data {strat_test}")
+        strat_test  = test[test["Ordinal__Churn"]==1].sum()/test[test["Ordinal__Churn"]==1].count()
+        strat_train = train[train["Ordinal__Churn"]==1].sum()/train[train["Ordinal__Churn"]==1].count()
+
+        logger.info(f"Transformed and splitted data, stratification of train data {strat_train} stratification of test data {strat_test}")
         logger.info(train.shape)
         logger.info(test.shape)

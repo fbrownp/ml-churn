@@ -22,4 +22,4 @@ COLUMNS:
   Churn: object
 
 TARGET_COLUMN:
-  target_1: Churn
+  target_1: Ordinal__Churn

@@ -16,7 +16,7 @@ data_validation:
 data_transformation:
   root_dir: artifacts/data_transformation
   data_path: artifacts/data_ingestion/main_data.csv
-  transformation_path: artifacts/data_transformation/
+  transformation_path: artifacts/data_transformation/transformation.pkl
 
 
 data_clustering:
