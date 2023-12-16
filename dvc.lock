@@ -63,8 +63,8 @@ stages:
       size: 1164
     - path: src/Churn_analysis/components/data_transformation.py
       hash: md5
-      md5: 9139b41607a8f9cb1b2e19e4ce52996a
-      size: 3250
+      md5: 3db759fe1740c1f104771a94b063bbb0
+      size: 3385
     - path: src/Churn_analysis/pipeline/stage03_data_transformation.py
       hash: md5
       md5: 248af95c7317d29a0bc6c93f8554b11e
@@ -72,8 +72,8 @@ stages:
     outs:
     - path: artifacts/data_transformation/
       hash: md5
-      md5: de27621927ba995fbfa91a697e289cab.dir
-      size: 980039
+      md5: b58e87b8a047fb3a08d1468ae346aa6c.dir
+      size: 1375173
       nfiles: 3
   data_clustering:
     cmd: python src/Churn_analysis/pipeline/stage04_data_clustering.py
@@ -105,16 +105,16 @@ stages:
     outs:
     - path: artifacts/data_clustering
       hash: md5
-      md5: d7795f0d2495de4a06af97ff4cdb93df.dir
-      size: 932610
+      md5: 322e8178d0aeb9268b7da1cc4a789dea.dir
+      size: 932553
       nfiles: 2
   model_trainer:
     cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
     deps:
     - path: artifacts/data_transformation/train.csv
       hash: md5
-      md5: ac78920969235685775ceeb9f646681d
-      size: 683468
+      md5: 0ab6e25eda9502f5c32ebe947e5b4dbc
+      size: 959548
     - path: config/config.yaml
       hash: md5
       md5: dd0f09ffa64bd86cf5708725c5e97164
@@ -134,16 +134,16 @@ stages:
     outs:
     - path: artifacts/model_trainer/
       hash: md5
-      md5: 783c250fc01d725e5c1116b82325ec5f.dir
-      size: 339486
+      md5: 00a194a32d07e7dcbdf3f7c27ce6ab76.dir
+      size: 347085
       nfiles: 1
   model_evaluation:
     cmd: python src/Churn_analysis/pipeline/stage06_model_evaluation.py
     deps:
     - path: artifacts/data_transformation/test.csv
       hash: md5
-      md5: 76eefbd915303b368884ef3d3b9f4b1c
-      size: 293313
+      md5: 1b5218318ac64ee642834ad056bd58b7
+      size: 411921
     - path: config/config.yaml
       hash: md5
       md5: dd0f09ffa64bd86cf5708725c5e97164
@@ -163,6 +163,6 @@ stages:
     outs:
     - path: artifacts/model_evaluation/
       hash: md5
-      md5: 5ee24ecdae81d947dfa289e5188f9a91.dir
-      size: 311
+      md5: 6823e2325b54d619ce92e7e1fb97b39c.dir
+      size: 310
       nfiles: 1
