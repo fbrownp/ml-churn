@@ -5,16 +5,16 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 8da0b0ddf12469c88f7f5b853de9cf26
-      size: 1200
+      md5: dd0f09ffa64bd86cf5708725c5e97164
+      size: 1164
     - path: src/Churn_analysis/components/data_ingestion.py
       hash: md5
-      md5: beacbdabac436d704b5607b6211f2c98
-      size: 815
+      md5: c9c418e675ecf09871b1ed997d0caec8
+      size: 792
     - path: src/Churn_analysis/pipeline/stage01_data_ingestion.py
       hash: md5
-      md5: aa0753cc7fb91bed35c28fa44114d53f
-      size: 966
+      md5: 241d46919f55fd42c847e03f411cb696
+      size: 936
     outs:
     - path: artifacts/data_ingestion/
       hash: md5
@@ -26,20 +26,20 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 8da0b0ddf12469c88f7f5b853de9cf26
-      size: 1200
+      md5: dd0f09ffa64bd86cf5708725c5e97164
+      size: 1164
     - path: schema.yaml
       hash: md5
-      md5: b860f5ca77d42963063e1c89364b1a7d
-      size: 552
+      md5: c62f7198ed4c73bb1dbeea346c3d8aa3
+      size: 527
     - path: src/Churn_analysis/components/data_validation.py
       hash: md5
-      md5: 479f87233c252be8f3a8183281732ef5
-      size: 2132
+      md5: 76360b7dd70e69e7b598c681195a0d4a
+      size: 2078
     - path: src/Churn_analysis/pipeline/stage02_data_validation.py
       hash: md5
-      md5: 4746c24b311ceeb47ad3a5efab904d58
-      size: 1033
+      md5: 91ef9d7bda032e40ccddce976436c4e6
+      size: 1005
     outs:
     - path: artifacts/data_validation/
       hash: md5
@@ -59,21 +59,21 @@ stages:
       size: 23
     - path: config/config.yaml
       hash: md5
-      md5: 8da0b0ddf12469c88f7f5b853de9cf26
-      size: 1200
+      md5: dd0f09ffa64bd86cf5708725c5e97164
+      size: 1164
     - path: src/Churn_analysis/components/data_transformation.py
       hash: md5
-      md5: 50f0df165f66dc6b5cbb0478ff2f638b
-      size: 3315
+      md5: 9139b41607a8f9cb1b2e19e4ce52996a
+      size: 3250
     - path: src/Churn_analysis/pipeline/stage03_data_transformation.py
       hash: md5
-      md5: 3a792bc20ab21ff7846a4ba315535e64
-      size: 1671
+      md5: 248af95c7317d29a0bc6c93f8554b11e
+      size: 1629
     outs:
     - path: artifacts/data_transformation/
       hash: md5
-      md5: d3099aa4ab752a1e0e521eaf473f2d15.dir
-      size: 987073
+      md5: de27621927ba995fbfa91a697e289cab.dir
+      size: 980039
       nfiles: 3
   data_clustering:
     cmd: python src/Churn_analysis/pipeline/stage04_data_clustering.py
@@ -84,58 +84,58 @@ stages:
       size: 985371
     - path: config/config.yaml
       hash: md5
-      md5: 8da0b0ddf12469c88f7f5b853de9cf26
-      size: 1200
+      md5: dd0f09ffa64bd86cf5708725c5e97164
+      size: 1164
     - path: params.yaml
       hash: md5
-      md5: 8581aa6f0c11b0739a3f49478829c92b
-      size: 272
+      md5: 6c7ed1c4ea3964971bb452617c2790d4
+      size: 256
     - path: schema.yaml
       hash: md5
-      md5: b860f5ca77d42963063e1c89364b1a7d
-      size: 552
+      md5: c62f7198ed4c73bb1dbeea346c3d8aa3
+      size: 527
     - path: src/Churn_analysis/components/data_clustering.py
       hash: md5
-      md5: 7aee102e15669873b8688fbf6441fbc6
-      size: 1937
+      md5: ef1759f6845edd4b1b047110846924f2
+      size: 1889
     - path: src/Churn_analysis/pipeline/stage04_data_clustering.py
       hash: md5
-      md5: b44634cf8b7827fd7a4ee3d27e66710e
-      size: 968
+      md5: 3fac9a89651fa5c9161887dbe3214aaf
+      size: 941
     outs:
     - path: artifacts/data_clustering
       hash: md5
-      md5: e0b499330c088e92934abcf5b48596b4.dir
-      size: 939643
+      md5: d7795f0d2495de4a06af97ff4cdb93df.dir
+      size: 932610
       nfiles: 2
   model_trainer:
     cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
     deps:
     - path: artifacts/data_transformation/train.csv
       hash: md5
-      md5: 5f4d29044eb86006b9da9219da42017b
-      size: 688391
+      md5: ac78920969235685775ceeb9f646681d
+      size: 683468
     - path: config/config.yaml
       hash: md5
-      md5: 8da0b0ddf12469c88f7f5b853de9cf26
-      size: 1200
+      md5: dd0f09ffa64bd86cf5708725c5e97164
+      size: 1164
     - path: params.yaml
       hash: md5
-      md5: 8581aa6f0c11b0739a3f49478829c92b
-      size: 272
+      md5: 6c7ed1c4ea3964971bb452617c2790d4
+      size: 256
     - path: src/Churn_analysis/components/model_training.py
       hash: md5
-      md5: eeb42a9238c5928e98a1d9ddfc8bfbb0
-      size: 1082
+      md5: 49cb6232c134d6b1a74b4698e991e34b
+      size: 1050
     - path: src/Churn_analysis/pipeline/stage05_model_training.py
       hash: md5
-      md5: 61c6ac8bbaa6c217cd5bcaeb48effe8b
-      size: 958
+      md5: e7e3d02df4386969fdc2fb5a2624a309
+      size: 928
     outs:
     - path: artifacts/model_trainer/
       hash: md5
-      md5: cf4cfd74703e3032712a94951953c19f.dir
-      size: 338398
+      md5: 783c250fc01d725e5c1116b82325ec5f.dir
+      size: 339486
       nfiles: 1
   model_evaluation:
     cmd: python src/Churn_analysis/pipeline/stage06_model_evaluation.py
