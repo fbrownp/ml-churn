@@ -41,7 +41,7 @@ class DataTransformation():
         input_encoder = preprocessor.fit(data.drop(columns=["customerID"]))
 
         Encoded_data = input_encoder.transform(data.drop(columns=["customerID"]))
-        Encoded_df = pd.DataFrame(Encoded_data , columns= preprocessor.get_feature_names_out())
+        Encoded_df = pd.DataFrame(Encoded_data , columns= input_encoder.get_feature_names_out())
 
         Encoded_df.drop(columns= ["Onehot__OnlineSecurity_No internet service",
                                   "Onehot__OnlineBackup_No internet service",
@@ -54,8 +54,8 @@ class DataTransformation():
         save_object(self.config.transformation_path, input_encoder)
 
         # Splitting the data
-        train, test = train_test_split(Encoded_df,test_size=0.3, random_state=42, stratify=data["Churn"] )
-        
+        train, test = train_test_split(Encoded_df,test_size=0.3, random_state=42, stratify=Encoded_df["Ordinal__Churn"] )
+
         train.to_csv(os.path.join(self.config.root_dir, "train.csv"), index= False)
         test.to_csv(os.path.join(self.config.root_dir, "test.csv"), index= False)
 

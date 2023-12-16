@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 import numpy as np
-
+import shap
 
 
 class VariablesIn(BaseModel):
@@ -45,7 +45,7 @@ def home():
 def predict(data : VariablesIn):
     data_df = pd.DataFrame([dict(data)])
     model = joblib.load("artifacts/model_trainer/churn_predictive_model.joblib")
-    explainer = joblib.load("research\SHAP\shap_explainer")
+    explainer = joblib.load("research/SHAP/shap_explainer")
     input_encoder = joblib.load("artifacts/data_transformation/transformation.pkl")
 
     Encoded_data = input_encoder.transform(data_df.drop(columns=["customerID"]))
@@ -59,9 +59,9 @@ def predict(data : VariablesIn):
                                 "Onehot__StreamingMovies_No internet service",
                                 "Ordinal__Churn"], inplace= True)
 
-    shap_values = explainer(Encoded_df)
+    print(Encoded_df.shape)
 
-    return {"Churn" : float(model.predict_proba(Encoded_df)[:, 1]) , "Shap_values": shap_values}
+    return {"Churn" : float(model.predict_proba(Encoded_df)[:, 1])}
 
 if __name__ == "__main__":
     uvicorn.run(app , host="127.0.0.1", port=8000)
