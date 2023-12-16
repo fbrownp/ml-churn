@@ -21,4 +21,5 @@ pydantic
 fastapi
 uvicorn
 kmodes
+streamlit
 -e .

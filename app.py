@@ -45,7 +45,7 @@ def home():
 def predict(data : VariablesIn):
     data_df = pd.DataFrame([dict(data)])
     model = joblib.load("artifacts/model_trainer/churn_predictive_model.joblib")
-
+    explainer = joblib.load("research\SHAP\shap_explainer")
     input_encoder = joblib.load("artifacts/data_transformation/transformation.pkl")
 
     Encoded_data = input_encoder.transform(data_df.drop(columns=["customerID"]))
@@ -58,9 +58,10 @@ def predict(data : VariablesIn):
                                 "Onehot__StreamingTV_No internet service",
                                 "Onehot__StreamingMovies_No internet service",
                                 "Ordinal__Churn"], inplace= True)
-    
 
-    return {"Churn" : float(model.predict(Encoded_df)) }
+    shap_values = explainer(Encoded_df)
+
+    return {"Churn" : float(model.predict_proba(Encoded_df)[:, 1]) , "Shap_values": shap_values}
 
 if __name__ == "__main__":
     uvicorn.run(app , host="127.0.0.1", port=8000)

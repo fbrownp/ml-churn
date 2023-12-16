@@ -27,4 +27,5 @@ var = {
 
 r = requests.post('http://127.0.0.1:8000/predict', json=var).json()
 
-print(pd.DataFrame([r]))
+request_as_pandas = pd.DataFrame([r])
+print(request_as_pandas)

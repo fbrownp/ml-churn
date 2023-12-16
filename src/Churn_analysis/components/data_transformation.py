@@ -27,8 +27,9 @@ class DataTransformation():
 
         Ordinal_variables = ["gender", "SeniorCitizen","Partner","Dependents","Churn"]
         Numeric_variables = ["tenure","MonthlyCharges","TotalCharges"]
-        One_hot_variables = ["InternetService","OnlineSecurity","OnlineBackup","DeviceProtection","TechSupport","StreamingTV","StreamingMovies"]
-
+        One_hot_variables = ["PhoneService","MultipleLines", "InternetService","OnlineSecurity","OnlineBackup",
+                            "DeviceProtection","TechSupport","StreamingTV","StreamingMovies","Contract","PaperlessBilling",
+                            "PaymentMethod"]
 
         #------------Complete data transformation-----------------------------------------------------------
         preprocessor = ColumnTransformer(transformers=[
