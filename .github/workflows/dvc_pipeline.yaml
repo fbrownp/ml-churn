@@ -10,6 +10,8 @@ on:
       - 'template.py'
       - 'setup.py'
 
+env:
+  DAGSHUGKEY: ${{secrets.DAGSHUBKEY}}
 
 jobs: 
   Integration: 
@@ -36,15 +38,6 @@ jobs:
 
       - name: Packages
         run: pip install -r requirements.txt
-
-      - name: MLFlow authentication
-        run:  python3 os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/FBrownp/ml-churn.mlflow"
-
-      - name: MLFlow authentication
-        run:  python3 os.environ["MLFLOW_TRACKING_USERNAME"]="FBrownp"
-
-      - name: MLFlow authentication
-        run:  python3 os.environ["MLFLOW_TRACKING_PASSWORD"]= ${{secrets.DAGSHUBKEY}}
 
       - name: Connect to repo
         run:
