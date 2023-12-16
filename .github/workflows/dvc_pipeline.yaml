@@ -39,6 +39,10 @@ jobs:
       - name: Packages
         run: pip install -r requirements.txt
 
+      - name: Upgrade cryptography package
+        run: pip3 install --upgrade cryptography==38.0.4
+
+        
       - name: Connect to repo
         run:
           dvc remote default origin-s3
