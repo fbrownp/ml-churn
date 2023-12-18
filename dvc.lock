@@ -70,11 +70,14 @@ stages:
       md5: 248af95c7317d29a0bc6c93f8554b11e
       size: 1629
     outs:
-    - path: artifacts/data_transformation/
+    - path: artifacts/data_transformation/test.csv
       hash: md5
-      md5: b58e87b8a047fb3a08d1468ae346aa6c.dir
-      size: 1375173
-      nfiles: 3
+      md5: 1b5218318ac64ee642834ad056bd58b7
+      size: 411921
+    - path: artifacts/data_transformation/train.csv
+      hash: md5
+      md5: 0ab6e25eda9502f5c32ebe947e5b4dbc
+      size: 959548
   data_clustering:
     cmd: python src/Churn_analysis/pipeline/stage04_data_clustering.py
     deps:
@@ -103,11 +106,10 @@ stages:
       md5: 3fac9a89651fa5c9161887dbe3214aaf
       size: 941
     outs:
-    - path: artifacts/data_clustering
+    - path: artifacts/data_clustering/Clustered_data.csv
       hash: md5
-      md5: 591ecd9d44f08dda0b1f4930f3dbc107.dir
-      size: 932515
-      nfiles: 2
+      md5: 1b7b5827034c25521b6a7a72d6674b43
+      size: 915046
   model_trainer:
     cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
     deps:
