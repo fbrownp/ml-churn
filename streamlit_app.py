@@ -7,10 +7,14 @@ import numpy as np
 from streamlit_shap import st_shap
 
 
+# https://ml-churn-ojc4v2wzja-uc.a.run.app/
 
 # Replace this URL with the URL where your FastAPI app is running
-FASTAPI_URL = "http://127.0.0.1:8000"
-FASTAPI_URL_PREDICT = 'http://127.0.0.1:8000/predict'
+# FASTAPI_URL = "http://127.0.0.1:8000"
+# FASTAPI_URL_PREDICT = 'http://127.0.0.1:8000/predict'
+
+FASTAPI_URL = "https://ml-churn-ojc4v2wzja-uc.a.run.app/"
+FASTAPI_URL_PREDICT = 'https://ml-churn-ojc4v2wzja-uc.a.run.app/predict'
 
 class shap_values:
     def __init__(self,values,base,data):
