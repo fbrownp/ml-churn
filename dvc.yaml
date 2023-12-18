@@ -43,7 +43,7 @@ stages:
     - artifacts/data_ingestion/main_data.csv
     - src/Churn_analysis/components/data_clustering.py
     outs:
-    - artifacts/data_clustering
+    - artifacts/data_clustering/Clustered_data.csv
 
 
   model_trainer:
