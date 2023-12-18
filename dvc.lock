@@ -105,7 +105,7 @@ stages:
     outs:
     - path: artifacts/data_clustering
       hash: md5
-      md5: cc258f844de02b439696b76f9b5a57ae.dir
+      md5: 2a249f5be1af668d161167a0b899f801.dir
       size: 932610
       nfiles: 2
   model_trainer:
