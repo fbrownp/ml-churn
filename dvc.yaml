@@ -29,7 +29,8 @@ stages:
     - artifacts/data_validation/status_dtype.txt
     - src/Churn_analysis/components/data_transformation.py
     outs:
-    - artifacts/data_transformation/
+    - artifacts/data_transformation/test.csv
+    - artifacts/data_transformation/train.csv
 
 
   data_clustering:
@@ -53,8 +54,8 @@ stages:
     - params.yaml
     - artifacts/data_transformation/train.csv
     - src/Churn_analysis/components/model_training.py
-    outs:
-    - artifacts/model_trainer/
+    # outs:
+    # - artifacts/model_trainer/
 
   
   model_evaluation:
