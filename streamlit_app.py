@@ -111,7 +111,7 @@ def main():
 
 
         with col2:
-            st.title("Waterfall:")
+            st.title("Waterfalll:")
             
             st_shap(shap.plots.waterfall(Explainer_obj, max_display=8),400)
 
