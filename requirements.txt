@@ -22,4 +22,5 @@ fastapi
 uvicorn
 kmodes
 streamlit
+streamlit_shap
 -e .

@@ -1,6 +1,13 @@
 import requests
 import pandas as pd 
 
+class shap_values:
+    def __init__(self,values,base,data):
+        self.values = values
+        self.base_values= base
+        self.data = data
+
+
 var = {
   "customerID": "1",
   "gender": "Male",
@@ -27,5 +34,8 @@ var = {
 
 r = requests.post('http://127.0.0.1:8000/predict', json=var).json()
 
-request_as_pandas = pd.DataFrame([r])
-print(request_as_pandas)
+shap_content = shap_values(r["Shap__values"], r["Shap__base_values"], r["Shap__data"])
+
+
+request_as_pandas = r
+print(r)

@@ -3,11 +3,22 @@ import requests
 import pandas as pd
 import shap
 import joblib
+import numpy as np
+from streamlit_shap import st_shap
+
 
 
 # Replace this URL with the URL where your FastAPI app is running
 FASTAPI_URL = "http://127.0.0.1:8000"
 FASTAPI_URL_PREDICT = 'http://127.0.0.1:8000/predict'
+
+class shap_values:
+    def __init__(self,values,base,data):
+        self.values = np.array(values)
+        self.base_values= np.array(base)
+        self.data = np.array(data)
+
+
 
 def Input_order(customerID,gender_value,senior_citizen_value, partner_value, dependents_value, tenure_value,
                        phone_service_value, multiple_lines_value, internet_service_value, online_security_value,
@@ -43,16 +54,12 @@ def Input_order(customerID,gender_value,senior_citizen_value, partner_value, dep
 
 
 def main():
-    st.title("Streamlit + FastAPI App")
+    st.title("App to determine Churn rate of clients")
     st.write("This is something i write")
 
     # Create a sidebar
-    st.sidebar.title("Sidebar")
+    st.sidebar.title("Client variables")
 
-    # Add widgets to the sidebar
-    # number_input = st.sidebar.number_input("Enter a number", min_value=0, max_value=100, value=50)
-    # chosen_option = st.sidebar.selectbox("Gender", ["Male", "Female"])
-    # chosen_option = st.sidebar.selectbox("Senior Citizen", ["Yes", "No"])
 
 
     gender_value = st.sidebar.radio("Gender", ["Male","Female"])
@@ -82,22 +89,34 @@ def main():
                        monthly_charges_value, total_charges_value, "Yes")
 
 
+
+    col1,col2 = st.columns(2)
+
+
+
     # Create a button
     if st.sidebar.button("Predict"):
         # Action to execute when the button is clicked
-        r = requests.post(FASTAPI_URL_PREDICT, json=input_variables).json()
-        request_as_pandas = pd.DataFrame([r])
-        churn_rate = float(request_as_pandas["Churn"])
-        st.title(f"{round(churn_rate,2)}")
+        response = requests.post(FASTAPI_URL_PREDICT, json=input_variables).json()
+
+        churn_rate = float(response["Churn"])
+        shap_content = shap_values(response["Shap__values"], response["Shap__base_values"], response["Shap__data"])
+        Explainer_obj = shap.Explanation(shap_content.values, shap_content.base_values, shap_content.data,
+                                            feature_names=response["Shap__columns"])
+        cluster_value = response["cluster_value"]
+
+        with col1:
+            st.header(f"Churn probability : {round(churn_rate,2)}")
+            st.header(f"Type of client : {cluster_value}")
+
+
+        with col2:
+            st.title("Waterfall:")
+            
+            st_shap(shap.plots.waterfall(Explainer_obj, max_display=8),400)
 
 
 
-    # Make a request to the FastAPI endpoint
-    response = requests.get(FASTAPI_URL)
-    data = response.json()
-
-    # Display the response from the FastAPI endpoint
-    st.json(data)
 
 if __name__ == "__main__":
     main()

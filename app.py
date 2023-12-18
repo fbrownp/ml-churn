@@ -5,6 +5,8 @@ import joblib
 import pandas as pd
 import numpy as np
 import shap
+import json
+from kmodes.kprototypes import KPrototypes
 
 
 class VariablesIn(BaseModel):
@@ -31,10 +33,6 @@ class VariablesIn(BaseModel):
     Churn: object
 
 
-class NumberResponse:
-    def __init__(self, value: float):
-        self.value = value
-
 
 app = FastAPI()
 @app.get("/")
@@ -45,6 +43,7 @@ def home():
 def predict(data : VariablesIn):
     data_df = pd.DataFrame([dict(data)])
     model = joblib.load("artifacts/model_trainer/churn_predictive_model.joblib")
+    model_clustering = joblib.load("artifacts/data_clustering/clustering_model.joblib")
     explainer = joblib.load("research/SHAP/shap_explainer")
     input_encoder = joblib.load("artifacts/data_transformation/transformation.pkl")
 
@@ -58,10 +57,19 @@ def predict(data : VariablesIn):
                                 "Onehot__StreamingTV_No internet service",
                                 "Onehot__StreamingMovies_No internet service",
                                 "Ordinal__Churn"], inplace= True)
+    
+    shap_values = explainer(Encoded_df)
+    cluster_value = model_clustering.predict(data_df.drop(columns = ["Churn","customerID"]),
+                                             categorical=[0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16])
 
-    print(Encoded_df.shape)
+    output_ = {"Churn" : float(model.predict_proba(Encoded_df)[:, 1]),
+               "Shap__values": list(shap_values.values[0]),
+               "Shap__base_values": list(shap_values.base_values),
+               "Shap__data": list(shap_values.data[0]),
+               "Shap__columns": list(Encoded_df.columns),
+               "cluster_value": float(cluster_value)}
 
-    return {"Churn" : float(model.predict_proba(Encoded_df)[:, 1])}
+    return output_
 
 if __name__ == "__main__":
     uvicorn.run(app , host="127.0.0.1", port=8000)
