@@ -1,0 +1,6 @@
+/data_ingestion
+/data_validation
+/data_transformation
+/data_clustering
+/model_trainer
+/model_evaluation
