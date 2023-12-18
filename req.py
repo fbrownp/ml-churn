@@ -22,17 +22,18 @@ var = {
   "OnlineBackup": "No",
   "DeviceProtection": "No",
   "TechSupport": "No",
-  "StreamingTV": "Yes",
-  "StreamingMovies": "Yes",
+  "StreamingTV": "No",
+  "StreamingMovies": "No",
   "Contract": "Month-to-month",
-  "PaperlessBilling": "Yes",
+  "PaperlessBilling": "No",
   "PaymentMethod": "Mailed check",
-  "MonthlyCharges": 204,
-  "TotalCharges": 804,
+  "MonthlyCharges": 0,
+  "TotalCharges": 0,
   "Churn": "Yes"
 }
 
 r = requests.post('https://ml-churn-ojc4v2wzja-uc.a.run.app/predict', json=var).json()
+# r = requests.post('http://127.0.0.1:8080/predict', json=var).json()
 
 shap_content = shap_values(r["Shap__values"], r["Shap__base_values"], r["Shap__data"])
 
