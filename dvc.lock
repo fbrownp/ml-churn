@@ -105,8 +105,8 @@ stages:
     outs:
     - path: artifacts/data_clustering
       hash: md5
-      md5: ff8fbf08daaad9019d7f4beabd4bc220.dir
-      size: 932591
+      md5: 591ecd9d44f08dda0b1f4930f3dbc107.dir
+      size: 932515
       nfiles: 2
   model_trainer:
     cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
