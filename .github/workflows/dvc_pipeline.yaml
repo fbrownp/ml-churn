@@ -74,7 +74,8 @@ jobs:
       - name: DCV push
         run: dvc push -r origin-s3
         
-
+      - name: DVC pull results
+        run: dvc pull
 
 
   # Deploy:
