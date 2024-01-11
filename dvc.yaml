@@ -7,7 +7,7 @@ stages:
       - config/config.yaml
       - src/Churn_analysis/components/data_ingestion.py
     outs: 
-      - artifacts/data_ingestion/
+      - artifacts/data_ingestion/main_data.csv
 
   
   data_validation:
@@ -18,7 +18,8 @@ stages:
     - schema.yaml
     - src/Churn_analysis/components/data_validation.py
     outs:
-    - artifacts/data_validation/
+    - artifacts/data_validation/status_dtype.txt
+    - artifacts/data_validation/status.txt
   
   data_transformation:
     cmd: python src/Churn_analysis/pipeline/stage03_data_transformation.py
@@ -31,6 +32,7 @@ stages:
     outs:
     - artifacts/data_transformation/test.csv
     - artifacts/data_transformation/train.csv
+    - artifacts/data_transformation/transformation.pkl
 
 
   data_clustering:
@@ -54,8 +56,8 @@ stages:
     - params.yaml
     - artifacts/data_transformation/train.csv
     - src/Churn_analysis/components/model_training.py
-    # outs:
-    # - artifacts/model_trainer/
+    outs:
+    - artifacts/model_trainer/churn_predictive_model.joblib
 
   
   model_evaluation:
@@ -67,4 +69,4 @@ stages:
     - src/Churn_analysis/components/model_evaluation.py
     - params.yaml
     outs:
-    - artifacts/model_evaluation/
+    - artifacts/model_evaluation/scores.json
