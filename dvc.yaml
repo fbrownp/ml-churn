@@ -32,7 +32,7 @@ stages:
     outs:
     - artifacts/data_transformation/test.csv
     - artifacts/data_transformation/train.csv
-    - artifacts/data_transformation/transformation.pkl
+    # - artifacts/data_transformation/transformation.pkl
 
 
   data_clustering:
@@ -56,8 +56,8 @@ stages:
     - params.yaml
     - artifacts/data_transformation/train.csv
     - src/Churn_analysis/components/model_training.py
-    outs:
-    - artifacts/model_trainer/churn_predictive_model.joblib
+    # outs:
+    # - artifacts/model_trainer/churn_predictive_model.joblib
 
   
   model_evaluation:
