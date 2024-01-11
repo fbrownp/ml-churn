@@ -10,7 +10,6 @@ import mlflow.xgboost
 from  urllib.parse import urlparse
 from pathlib import Path
 from Churn_analysis.entity.config_entity import ModelEvaluationConfig
-import os 
 
 DASGHUB_KEY = os.environ["DAGSHUGKEY"]
 class ModelEvaluation():
