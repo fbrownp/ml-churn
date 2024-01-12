@@ -56,7 +56,7 @@ jobs:
 
       - name: Pull data from DVC
         run: |
-         docker run -v $(pwd):/app ghcr.io/fbrownp/ml-churn:latest /bin/bash -c "
+         docker run -v $(pwd):/app -e DAGSHUGKEY=${DAGSHUGKEY} ghcr.io/fbrownp/ml-churn:latest /bin/bash -c "
           dvc remote default origin-s3
           dvc remote modify origin-s3 --local access_key_id ${{secrets.DAGSHUBKEY}}
           dvc remote modify origin-s3 --local secret_access_key ${{secrets.DAGSHUBKEY}}
