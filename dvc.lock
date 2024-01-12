@@ -152,8 +152,8 @@ stages:
       size: 256
     - path: src/Churn_analysis/components/model_evaluation.py
       hash: md5
-      md5: 543e062a28dd5b1289f9e6ab9718495b
-      size: 2146
+      md5: 0171c0abeb34f506b59dcfb95c850621
+      size: 2162
     - path: src/Churn_analysis/pipeline/stage06_model_evaluation.py
       hash: md5
       md5: 2466986ccccc1b2be9b58b8b905a843f
