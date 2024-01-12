@@ -33,23 +33,19 @@ jobs:
       - name: Run unit tests
         run: echo "Running unit tests"
 
-  LoginIntoDocker: 
-    name: Docker Login
-    runs-on: ubuntu-latest
-    steps:
-      - name: Docker login
-        run : echo "${{ secrets.SECRET_ENV }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
 
   RunCode:
     name: Running the code
     runs-on: ubuntu-latest
-    container: ghcr.io/fbrownp/ml-churn:latest
 
     steps:
       - name: Checkout repo
         id: checkout
         uses: actions/checkout@v2
+
+
+      - name: Docker login
+        run : echo "${{ secrets.SECRET_ENV }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       # - name: Packages
       #   run: pip install -r requirements.txt
@@ -60,13 +56,14 @@ jobs:
 
       - name: Pull data from DVC
         run: |
+         docker run -v $(pwd):/app ghcr.io/fbrownp/ml-churn /bin/bash -c "
           dvc remote default origin-s3
           dvc remote modify origin-s3 --local access_key_id ${{secrets.DAGSHUBKEY}}
           dvc remote modify origin-s3 --local secret_access_key ${{secrets.DAGSHUBKEY}}
           dvc pull
-      
-      - name: Run the DVC pipeline
-        run: dvc repro
+          dvc repro
+          dvc push -r origin-s3
+          "
 
 
       # - name: Connect to repo
@@ -85,8 +82,6 @@ jobs:
       #   run: dvc repro
 
 
-      - name: DCV push
-        run: dvc push -r origin-s3
 
       - name: Commit changes in dvc.lock
         uses: stefanzweifel/git-auto-commit-action@v4 
