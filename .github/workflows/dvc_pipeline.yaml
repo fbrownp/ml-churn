@@ -37,12 +37,21 @@ jobs:
   RunCode:
     name: Running the code
     runs-on: ubuntu-latest
-    container: ml-churn:latest
 
     steps:
       - name: Checkout repo
         id: checkout
         uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Packages
+        run: echo "${{ secrets.SECRET_ENV }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+
+      - name: Pull the Docker image
+        run: docker pull docker.pkg.github.com/users/fbrownp/packages/ml-churn:latest
+
 
       # - name: Packages
       #   run: pip install -r requirements.txt
