@@ -13,6 +13,8 @@ from Churn_analysis.entity.config_entity import ModelEvaluationConfig
 
 
 DASGHUB_KEY = os.environ["DAGSHUGKEY"]
+try_var_1 = 1
+
 class ModelEvaluation():
     def __init__(self, config: ModelEvaluationConfig):
         self.config = config
