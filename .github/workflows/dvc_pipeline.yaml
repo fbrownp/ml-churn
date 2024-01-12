@@ -33,6 +33,13 @@ jobs:
       - name: Run unit tests
         run: echo "Running unit tests"
 
+  LoginIntoDocker: 
+    name: Docker Login
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker login
+        run : echo "${{ secrets.SECRET_ENV }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
 
   RunCode:
     name: Running the code
