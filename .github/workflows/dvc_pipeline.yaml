@@ -37,7 +37,7 @@ jobs:
   RunCode:
     name: Running the code
     runs-on: ubuntu-latest
-    container: docker.pkg.github.com/users/fbrownp/packages/ml-churn:latest
+    container: ml-churn:latest
 
     steps:
       - name: Checkout repo
