@@ -37,32 +37,49 @@ jobs:
   RunCode:
     name: Running the code
     runs-on: ubuntu-latest
+    container: docker.pkg.github.com/users/fbrownp/packages/ml-churn:latest
+
     steps:
       - name: Checkout repo
         id: checkout
         uses: actions/checkout@v2
 
-      - name: Packages
-        run: pip install -r requirements.txt
+      # - name: Packages
+      #   run: pip install -r requirements.txt
 
-      - name: Upgrade cryptography package
-        run: pip3 install --upgrade cryptography==38.0.4
+      # - name: Upgrade cryptography package
+      #   run: pip3 install --upgrade cryptography==38.0.4
 
 
-      - name: Connect to repo
-        run:
+      - name: Pull data from DVC
+        run: |
           dvc remote default origin-s3
-      
-      - name: User
-        run:
           dvc remote modify origin-s3 --local access_key_id ${{secrets.DAGSHUBKEY}}
-      
-      - name: Password
-        run:
           dvc remote modify origin-s3 --local secret_access_key ${{secrets.DAGSHUBKEY}}
-
-      - name: Run DVC
+          dvc pull
+      
+      - name: Run the DVC pipeline
         run: dvc repro
+
+
+      # - name: Connect to repo
+      #   run:
+      #     dvc remote default origin-s3
+      
+      # - name: User
+      #   run:
+      #     dvc remote modify origin-s3 --local access_key_id ${{secrets.DAGSHUBKEY}}
+      
+      # - name: Password
+      #   run:
+      #     dvc remote modify origin-s3 --local secret_access_key ${{secrets.DAGSHUBKEY}}
+
+      # - name: Run DVC
+      #   run: dvc repro
+
+
+      - name: DCV push
+        run: dvc push -r origin-s3
 
       - name: Commit changes in dvc.lock
         uses: stefanzweifel/git-auto-commit-action@v4 
@@ -71,8 +88,8 @@ jobs:
           branch: main
           file-pattern: dvc.lock
 
-      - name: DCV push
-        run: dvc push -r origin-s3
+      # - name: DCV push
+      #   run: dvc push -r origin-s3
 
 
   # Deploy:
