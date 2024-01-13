@@ -1,0 +1,28 @@
+cmd: python src/Churn_analysis/pipeline/stage03_data_transformation.py
+deps:
+- path: artifacts/data_validation/status.txt
+  hash: md5
+  md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+  size: 23
+- path: artifacts/data_validation/status_dtype.txt
+  hash: md5
+  md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+  size: 23
+- path: config/config.yaml
+  hash: md5
+  md5: 8da0b0ddf12469c88f7f5b853de9cf26
+  size: 1200
+- path: src/Churn_analysis/components/data_transformation.py
+  hash: md5
+  md5: 50f0df165f66dc6b5cbb0478ff2f638b
+  size: 3315
+- path: src/Churn_analysis/pipeline/stage03_data_transformation.py
+  hash: md5
+  md5: 3a792bc20ab21ff7846a4ba315535e64
+  size: 1671
+outs:
+- path: artifacts/data_transformation/
+  hash: md5
+  md5: d3099aa4ab752a1e0e521eaf473f2d15.dir
+  size: 987073
+  nfiles: 3

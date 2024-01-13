@@ -1,0 +1,19 @@
+cmd: python src/Churn_analysis/pipeline/stage01_data_ingestion.py
+deps:
+- path: config/config.yaml
+  hash: md5
+  md5: 8da0b0ddf12469c88f7f5b853de9cf26
+  size: 1200
+- path: src/Churn_analysis/components/data_ingestion.py
+  hash: md5
+  md5: beacbdabac436d704b5607b6211f2c98
+  size: 815
+- path: src/Churn_analysis/pipeline/stage01_data_ingestion.py
+  hash: md5
+  md5: aa0753cc7fb91bed35c28fa44114d53f
+  size: 966
+outs:
+- path: artifacts/data_ingestion/main_data.csv
+  hash: md5
+  md5: f80fce8a6efe7f0db5bcb0dbad526a6c
+  size: 985371

@@ -1,0 +1,24 @@
+cmd: python src/Churn_analysis/pipeline/stage02_data_validation.py
+deps:
+- path: config/config.yaml
+  hash: md5
+  md5: 8da0b0ddf12469c88f7f5b853de9cf26
+  size: 1200
+- path: schema.yaml
+  hash: md5
+  md5: 332928eb5d146dfa4ca730ddc8398c26
+  size: 543
+- path: src/Churn_analysis/components/data_validation.py
+  hash: md5
+  md5: 479f87233c252be8f3a8183281732ef5
+  size: 2132
+- path: src/Churn_analysis/pipeline/stage02_data_validation.py
+  hash: md5
+  md5: 4746c24b311ceeb47ad3a5efab904d58
+  size: 1033
+outs:
+- path: artifacts/data_validation/
+  hash: md5
+  md5: 073220ab554a5b021e7faf79130d289b.dir
+  size: 46
+  nfiles: 2

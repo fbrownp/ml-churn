@@ -1,0 +1,27 @@
+cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
+deps:
+- path: artifacts/data_transformation/train.csv
+  hash: md5
+  md5: 48b65366bf9fe2afc5a2cd11c9ee2142
+  size: 964471
+- path: config/config.yaml
+  hash: md5
+  md5: 8da0b0ddf12469c88f7f5b853de9cf26
+  size: 1200
+- path: params.yaml
+  hash: md5
+  md5: 8581aa6f0c11b0739a3f49478829c92b
+  size: 272
+- path: src/Churn_analysis/components/model_training.py
+  hash: md5
+  md5: eeb42a9238c5928e98a1d9ddfc8bfbb0
+  size: 1082
+- path: src/Churn_analysis/pipeline/stage05_model_training.py
+  hash: md5
+  md5: 61c6ac8bbaa6c217cd5bcaeb48effe8b
+  size: 958
+outs:
+- path: artifacts/model_trainer/churn_predictive_model.joblib
+  hash: md5
+  md5: 83c0eff474863be97f5c4f7e1b1a591b
+  size: 344495

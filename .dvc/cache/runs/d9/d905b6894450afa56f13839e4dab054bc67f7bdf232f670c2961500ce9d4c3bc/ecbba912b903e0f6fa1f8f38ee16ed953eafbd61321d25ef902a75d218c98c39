@@ -1,0 +1,32 @@
+cmd: python src/Churn_analysis/pipeline/stage04_data_clustering.py
+deps:
+- path: artifacts/data_ingestion/main_data.csv
+  hash: md5
+  md5: f80fce8a6efe7f0db5bcb0dbad526a6c
+  size: 985371
+- path: config/config.yaml
+  hash: md5
+  md5: 8da0b0ddf12469c88f7f5b853de9cf26
+  size: 1200
+- path: params.yaml
+  hash: md5
+  md5: 8581aa6f0c11b0739a3f49478829c92b
+  size: 272
+- path: schema.yaml
+  hash: md5
+  md5: b860f5ca77d42963063e1c89364b1a7d
+  size: 552
+- path: src/Churn_analysis/components/data_clustering.py
+  hash: md5
+  md5: 7aee102e15669873b8688fbf6441fbc6
+  size: 1937
+- path: src/Churn_analysis/pipeline/stage04_data_clustering.py
+  hash: md5
+  md5: b44634cf8b7827fd7a4ee3d27e66710e
+  size: 968
+outs:
+- path: artifacts/data_clustering
+  hash: md5
+  md5: e0b499330c088e92934abcf5b48596b4.dir
+  size: 939643
+  nfiles: 2
