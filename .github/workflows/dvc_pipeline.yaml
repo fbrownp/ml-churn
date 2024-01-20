@@ -14,7 +14,7 @@ on:
       - 'app.py'
       - 'main.py'
       - '.gitattributes'
-
+      - 'mlruns/0'
 
 env:
   DAGSHUGKEY: ${{secrets.DAGSHUBKEY}}
@@ -90,8 +90,12 @@ jobs:
           branch: main
           file-pattern: dvc.lock
 
-      # - name: DCV push
-      #   run: dvc push -r origin-s3
+      - name: Push MLruns to Github
+        run: |
+            git add mlruns/0
+            git commit -m "mlruns add"
+            git push
+
 
 
   # Deploy:
