@@ -14,11 +14,9 @@ on:
       - 'app.py'
       - 'main.py'
       - '.gitattributes'
-      - 'mlruns/0'
 
 env:
   DAGSHUGKEY: ${{secrets.DAGSHUBKEY}}
-  GITHUBKEY: ${{secrets.SECRET_ENV}}
 
 jobs: 
   Integration: 
@@ -91,18 +89,7 @@ jobs:
           branch: main
           file-pattern: dvc.lock
 
-      - name: Set up Git
-        run: |
-          git config user.name "fbrownp"
-          git config user.email "fbrownp.ic@gmail.com"
 
-      - name: Push Code
-        run: |
-          git add mlruns
-          git commit -m "Automated commit by GitHub Actions"
-          git push origin main  # Adjust the branch name as needed
-        env:
-          GH_TOKEN: GITHUBKEY
 
   # Deploy:
   #   name: deploy to docker images
