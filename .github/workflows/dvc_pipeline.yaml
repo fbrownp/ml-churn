@@ -90,11 +90,11 @@ jobs:
           branch: main
           file-pattern: dvc.lock
 
-      - name: Push MLruns to Github
-        run: |
-            git add mlruns
-            git commit -m "mlruns add"
-            git push
+      # - name: Push MLruns to Github
+      #   run: |
+      #       git add mlruns
+      #       git commit -m "mlruns add"
+      #       git push
 
 
 
