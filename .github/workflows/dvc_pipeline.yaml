@@ -18,6 +18,7 @@ on:
 
 env:
   DAGSHUGKEY: ${{secrets.DAGSHUBKEY}}
+  GITHUBKEY: ${{secrets.SECRET_ENV}}
 
 jobs: 
   Integration: 
@@ -90,11 +91,17 @@ jobs:
           branch: main
           file-pattern: dvc.lock
 
-      # - name: Push MLruns to Github
-      #   run: |
-      #       git add mlruns
-      #       git commit -m "mlruns add"
-      #       git push
+      - name: Push MLruns to Github
+        run: |
+          git config --global user.email "fbrownp@gmail.com" && \
+            git config --global user.name "fbrownp" && \
+            git config --global credential.helper store && \
+            echo GITHUBKEY > ~/.git-credentials
+            cd ml-churn
+
+            git add mlruns
+            git commit -m "mlruns add"
+            git push
 
 
 
