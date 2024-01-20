@@ -45,8 +45,8 @@ class ModelEvaluation():
 
 
 
-        with mlflow.start_run():
-
+        with mlflow.start_run() as run:
+            run_id = run.info.run_uuid
             scores = calculate_metrics(conf_matrix)
             save_json(path= Path(os.path.join(self.config.root_dir,"scores.json")), data = scores)
   

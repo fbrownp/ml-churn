@@ -1,0 +1,15 @@
+artifact_uri: file:///d:/Repositories/ml-churn/mlruns/0/5e388d31a4864c9090dddb91a4229e44/artifacts
+end_time: 1705767799111
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5e388d31a4864c9090dddb91a4229e44
+run_name: agreeable-turtle-490
+run_uuid: 5e388d31a4864c9090dddb91a4229e44
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1705767799024
+status: 4
+tags: []
+user_id: fbrow

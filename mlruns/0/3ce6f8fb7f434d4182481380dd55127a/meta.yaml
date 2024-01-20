@@ -1,0 +1,15 @@
+artifact_uri: file:///d:/Repositories/ml-churn/mlruns/0/3ce6f8fb7f434d4182481380dd55127a/artifacts
+end_time: 1705767841118
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3ce6f8fb7f434d4182481380dd55127a
+run_name: classy-chimp-714
+run_uuid: 3ce6f8fb7f434d4182481380dd55127a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1705767835209
+status: 3
+tags: []
+user_id: fbrow
