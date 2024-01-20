@@ -92,7 +92,7 @@ jobs:
 
       - name: Push MLruns to Github
         run: |
-            git add mlruns/0
+            git add mlruns
             git commit -m "mlruns add"
             git push
 
