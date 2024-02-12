@@ -47,11 +47,11 @@ Models and experiments are tracked using `Mlflow` library linked to a remote rep
 
 ## Repository organization
 The main components of this repository are:
-- [EDA and Clustering notebook](research\EDA_churn_analysis.ipynb), where the complete EDA and Clustering model using ``K-Prototypes`` library is presented. 
-- [Churn model development notebook](research\Model_churn_analysis.ipynb), where different classification models are tested and evaluated, with an ``XGBoost`` model being the better fit.
-- [Components of the models made .py files](src\Churn_analysis\components), where main components of the analysis are productionalize into ``.py`` files.
+- [EDA and Clustering notebook](research/EDA_churn_analysis.ipynb), where the complete EDA and Clustering model using ``K-Prototypes`` library is presented. 
+- [Churn model development notebook](research/Model_churn_analysis.ipynb), where different classification models are tested and evaluated, with an ``XGBoost`` model being the better fit.
+- [Components of the models made .py files](src/Churn_analysis/components), where main components of the analysis are productionalize into ``.py`` files.
 - [DVC pipeline](dvc.yaml). The ``.yaml`` file that controls the `dvc repro` actions.
-- [Workflow pipeline](.github\workflows\dvc_pipeline.yaml)
+- [Workflow pipeline](.github/workflows/dvc_pipeline.yaml)
 The ``.yaml`` file that controls the `github actions`.
 - [API development](app.py)
 The ``.py`` where a `FastAPI` is presented.
@@ -75,7 +75,7 @@ And proceed to connect to the remote storage using your selected login system
 dvc remote add MyremoteStorage
 ```
 
-Then define `Mlflow` credentials in `src\Churn_analysis\components\model_evaluation.py` file or define it as `env variables` in github:
+Then define `Mlflow` credentials in `src/Churn_analysis/components/model_evaluation.py` file or define it as `env variables` in github:
 ```python
 os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/User/Repo.mlflow"
 os.environ["MLFLOW_TRACKING_USERNAME"]="MyUserName"
