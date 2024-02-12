@@ -23,7 +23,7 @@ From the clustering analysis, the main findings correspond to the main character
 
 
 
-![image file](img\eda_results.png)
+![image file](https://github.com/fbrownp/ml-churn/blob/main/img/img/eda_results.png)
 ### Classification model
 From the classification analysis, the main findings are:
 - **A higher tenure time** usually leads to a **lower Churn rate**.
@@ -35,7 +35,7 @@ From the classification analysis, the main findings are:
 
 
 
-![image file](img\churn_results.png)
+![image file](https://github.com/fbrownp/ml-churn/blob/main/img/img/churn_results.png)
 
 
 ## How are the models and experiments tracked?
@@ -54,7 +54,7 @@ The ``.yaml`` file that controls the `github actions`.
 The ``.py`` where a `FastAPI` is presented.
 
 **The main workflow of the code presented in this reposity follows this scheme:**
-![image file](img\churn_repo.jpg)
+![image file](https://github.com/fbrownp/ml-churn/blob/main/img/churn_repo.jpg)
 
 ## How to run the pipeline?
 
