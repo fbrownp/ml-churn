@@ -20,6 +20,7 @@ class ModelEvaluation():
         self.config = config
         os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/FBrownp/ml-churn.mlflow"
         os.environ["MLFLOW_TRACKING_USERNAME"]="FBrownp"
+        os.environ["MLFLOW_TRACKING_PASSWORD"]= DASGHUB_KEY
 
 
     def get_model_evaluation_object(self):
