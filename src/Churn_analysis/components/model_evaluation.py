@@ -20,7 +20,6 @@ class ModelEvaluation():
         self.config = config
         os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/FBrownp/ml-churn.mlflow"
         os.environ["MLFLOW_TRACKING_USERNAME"]="FBrownp"
-        # os.environ["MLFLOW_TRACKING_PASSWORD"]= "cceabdf6d4f5adc126b6cb03cc7cc4bf568e2591"
 
 
     def get_model_evaluation_object(self):
@@ -55,7 +54,6 @@ class ModelEvaluation():
 
             for key in scores.keys():
                 mlflow.log_metric(key,scores[key])
-                print(key,scores[key])
             mlflow.log_metric("ROC_AUC",roc_auc)
 
             if tracking_url_type_store != "file":

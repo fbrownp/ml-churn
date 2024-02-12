@@ -23,4 +23,5 @@ uvicorn
 kmodes
 streamlit
 streamlit_shap
+explainerdashboard
 -e .
