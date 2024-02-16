@@ -33,7 +33,7 @@ From the classification analysis, the main findings are:
 - Telco **fiber optic internet service could be bad** or Telco **have external competition at lower prices that offers cheap fiber optic**.
 - Clients with a **two-year contract** have a **lower Churn rate**. 
 - Clients **referals** is an indicator of how good the client perceive the service.
-- Latitude and Longitude indicates that clients of specific locations have **Higher Churn rates**, a geolocation analysis would help to find more information. ¿Maybe this location is where the competition is present?
+- **Latitude and Longitude indicates that clients of specific locations have** **Higher Churn rates**, a geolocation analysis would help to find more information. **¿Maybe this location is where the competition is present?**
 
 
 
