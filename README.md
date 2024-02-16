@@ -6,7 +6,7 @@
 The motivation behind this project is to develop a complete data analysis of the Telco Churn dataset, looking for **key patterns** that allows the creation of a clustering model to **stablish different categories of clients**, obtain the **main features behind those clients** and finally obtaining a classification model to predict whether the client will Churn or not.
 
 ## Dataset
-The dataset is obtained from the [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn/data) Kaggle dataset. This dateset includes information about: 
+The dataset is obtained from the [Telco Customer Churn](https://www.kaggle.com/datasets/ylchang/telco-customer-churn-1113) Kaggle dataset. This dateset includes information about: 
 - Customers who left within the last month – the column is called Churn
 Services that each customer has signed up for – phone, multiple lines, internet, online security, online backup, device protection, tech support, and streaming TV and movies
 - Customer account information – how long they’ve been a customer, contract, payment method, paperless billing, monthly charges, and total charges
@@ -14,12 +14,13 @@ Services that each customer has signed up for – phone, multiple lines, interne
 
 ## Main findings
 ### Clustering model
-From the clustering analysis, the main findings correspond to the main characteristics of **3 groups of clients**, where the behaviour of clusters is summarized using **SHAP values**. From the results it is observable that the **5 most important features** in the clustering model are:
+From the clustering analysis, the main findings correspond to the main characteristics of **4 groups of clients**, where the behaviour of clusters is summarized using **SHAP values** with the **Clustered results** as `y`. From the results it is observable that the **5 most important features for clustering** are `PCA` values related to numerical quantities and `Dependents-No` category, among the `PCA` related variables we can find special relation with:
 - **TotalCharges**: The total charges amount that clients have paid.
 - **MonthlyCharges**: The amount of charges a client pays monthly. 
 - **tenure**: The amount of time a client have been using the company services.
 - **InternetService_No**: Amount of clients that do not have internet service.
-- **Partner**: Binary value to determine whether a client have a partner or not.
+
+
 
 
 
@@ -30,8 +31,9 @@ From the classification analysis, the main findings are:
 - People with **Month to Month contracts have a higher Churn rate**.
 - **Monthly charges have a high influence in Churn rate**.
 - Telco **fiber optic internet service could be bad** or Telco **have external competition at lower prices that offers cheap fiber optic**.
-- Clients with **no online security** or  **no tech support** have a **higher Churn rate**.
 - Clients with a **two-year contract** have a **lower Churn rate**. 
+- Clients **referals** is an indicator of how good the client perceive the service.
+
 
 
 
