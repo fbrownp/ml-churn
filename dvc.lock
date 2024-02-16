@@ -140,26 +140,26 @@ stages:
     deps:
     - path: artifacts/data_transformation/test.csv
       hash: md5
-      md5: 77456479b85360368979902975b8e367
-      size: 414032
+      md5: 1b5218318ac64ee642834ad056bd58b7
+      size: 411921
     - path: config/config.yaml
       hash: md5
-      md5: 8da0b0ddf12469c88f7f5b853de9cf26
-      size: 1200
+      md5: dd0f09ffa64bd86cf5708725c5e97164
+      size: 1164
     - path: params.yaml
       hash: md5
-      md5: 8581aa6f0c11b0739a3f49478829c92b
-      size: 272
+      md5: 6c7ed1c4ea3964971bb452617c2790d4
+      size: 256
     - path: src/Churn_analysis/components/model_evaluation.py
       hash: md5
-      md5: 7adb7047560ea7d9438f3f2995a4c19e
-      size: 2290
+      md5: 925e6359c45940d3988dfff8cdb2b6ef
+      size: 2129
     - path: src/Churn_analysis/pipeline/stage06_model_evaluation.py
       hash: md5
-      md5: 889356f9e6a37534ee01fbf18c47b65a
-      size: 986
+      md5: 2466986ccccc1b2be9b58b8b905a843f
+      size: 956
     outs:
     - path: artifacts/model_evaluation/scores.json
       hash: md5
-      md5: 95a49982a041524ae7d196e59356ebc3
-      size: 318
+      md5: 8e45fde8d93f7050eca0a26562f71e87
+      size: 310
