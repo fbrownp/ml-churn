@@ -46,11 +46,9 @@ class ModelEvaluation():
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         # mlflow.set_experiment(timestamp)
-        mlflow.set_tag("mlflow.runName", f"{timestamp}")
 
 
-
-        with mlflow.start_run() as run:
+        with mlflow.start_run(run_id=f"{timestamp}") as run:
             
             scores = calculate_metrics(conf_matrix)
             save_json(path= Path(os.path.join(self.config.root_dir,"scores.json")), data = scores)
