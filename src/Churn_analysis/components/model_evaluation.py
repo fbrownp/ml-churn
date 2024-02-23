@@ -10,8 +10,10 @@ import mlflow.xgboost
 from  urllib.parse import urlparse
 from pathlib import Path
 from Churn_analysis.entity.config_entity import ModelEvaluationConfig
+from datetime import datetime
 
 
+timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
 
 DASGHUB_KEY = os.environ["DAGSHUGKEY"]
 
@@ -43,6 +45,7 @@ class ModelEvaluation():
 
         mlflow.set_registry_uri(self.config.mlflow_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+        mlflow.set_experiment(timestamp)
 
 
 
