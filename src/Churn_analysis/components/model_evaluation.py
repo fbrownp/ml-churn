@@ -52,6 +52,8 @@ class ModelEvaluation():
             save_json(path= Path(os.path.join(self.config.root_dir,"scores.json")), data = scores)
   
             mlflow.log_params(self.config.all_params)
+            mlflow.log_input(mlflow.data.from_pandas(test_data_df),
+                             context = "Training")
 
             for key in scores.keys():
                 mlflow.log_metric(key,scores[key])
