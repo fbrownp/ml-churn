@@ -32,7 +32,7 @@ var = {
   "Churn": "Yes"
 }
 
-r = requests.post('https://ml-churn-ojc4v2wzja-uc.a.run.app/predict', json=var).json()
+r = requests.post('https://ml-churn-ojc4v2wzja-uc.a.run.app//predict', json=var).json()
 # r = requests.post('http://127.0.0.1:8080/predict', json=var).json()
 
 shap_content = shap_values(r["Shap__values"], r["Shap__base_values"], r["Shap__data"])
