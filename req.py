@@ -37,6 +37,5 @@ r = requests.post('https://ml-churn-ojc4v2wzja-uc.a.run.app/predict', json=var).
 
 shap_content = shap_values(r["Shap__values"], r["Shap__base_values"], r["Shap__data"])
 
-
 request_as_pandas = r
 print(r)
