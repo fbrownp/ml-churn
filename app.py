@@ -43,8 +43,8 @@ def home():
 def predict(data : VariablesIn):
     data_df = pd.DataFrame([dict(data)])
     model = joblib.load("artifacts/model_trainer/churn_predictive_model.pkl")
-    model_clustering = joblib.load("artifacts/data_clustering/clustering_model.pkl")
-    explainer = joblib.load("research/SHAP/shap_explainer")
+    # model_clustering = joblib.load("artifacts/data_clustering/clustering_model.pkl")
+    # explainer = joblib.load("research/SHAP/shap_explainer")
     input_encoder = joblib.load("artifacts/data_transformation/transformation.pkl")
 
     Encoded_data = input_encoder.transform(data_df.drop(columns=["customerID"]))
@@ -58,16 +58,18 @@ def predict(data : VariablesIn):
                                 "Onehot__StreamingMovies_No internet service",
                                 "Ordinal__Churn"], inplace= True)
     
-    shap_values = explainer(Encoded_df)
-    cluster_value = model_clustering.predict(data_df.drop(columns = ["Churn","customerID"]),
-                                             categorical=[0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16])
+    # shap_values = explainer(Encoded_df)
+    # cluster_value = model_clustering.predict(data_df.drop(columns = ["Churn","customerID"]),
+    #                                          categorical=[0,1,2,3,5,6,7,8,9,10,11,12,13,14,15,16])
 
-    output_ = {"Churn" : float(model.predict_proba(Encoded_df)[:, 1]),
-               "Shap__values": list(shap_values.values[0]),
-               "Shap__base_values": list(shap_values.base_values),
-               "Shap__data": list(shap_values.data[0]),
-               "Shap__columns": list(Encoded_df.columns),
-               "cluster_value": float(cluster_value)}
+    # output_ = {"Churn" : float(model.predict_proba(Encoded_df)[:, 1]),
+    #            "Shap__values": list(shap_values.values[0]),
+    #            "Shap__base_values": list(shap_values.base_values),
+    #            "Shap__data": list(shap_values.data[0]),
+    #            "Shap__columns": list(Encoded_df.columns),
+    #            "cluster_value": float(cluster_value)}
+
+    output_ = {"Churn" : float(model.predict_proba(Encoded_df)[:, 1])}
 
     return output_
 
