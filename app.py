@@ -42,8 +42,8 @@ def home():
 @app.post("/predict")
 def predict(data : VariablesIn):
     data_df = pd.DataFrame([dict(data)])
-    model = joblib.load("artifacts/model_trainer/churn_predictive_model.joblib")
-    model_clustering = joblib.load("artifacts/data_clustering/clustering_model.joblib")
+    model = joblib.load("artifacts/model_trainer/churn_predictive_model.pkl")
+    model_clustering = joblib.load("artifacts/data_clustering/clustering_model.pkl")
     explainer = joblib.load("research/SHAP/shap_explainer")
     input_encoder = joblib.load("artifacts/data_transformation/transformation.pkl")
 
