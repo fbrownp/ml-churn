@@ -7,7 +7,7 @@ import numpy as np
 import shap
 import json
 from kmodes.kprototypes import KPrototypes
-
+#
 
 class VariablesIn(BaseModel):
     customerID: object

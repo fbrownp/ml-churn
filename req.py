@@ -28,7 +28,7 @@ var = {
   "PaperlessBilling": "No",
   "PaymentMethod": "Mailed check",
   "MonthlyCharges": 0,
-  "TotalCharges": 0,
+  "TotalCharges": 10,
   "Churn": "Yes"
 }
 
