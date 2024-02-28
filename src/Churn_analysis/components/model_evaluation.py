@@ -13,7 +13,7 @@ from Churn_analysis.entity.config_entity import ModelEvaluationConfig
 from datetime import datetime
 
 
-timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+# timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
 
 DASGHUB_KEY = os.environ["DAGSHUGKEY"]
 
