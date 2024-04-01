@@ -1,0 +1,165 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/Churn_analysis/pipeline/stage01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 34fce371796346762f1bd3d61f8914e1
+      size: 1155
+    - path: src/Churn_analysis/components/data_ingestion.py
+      hash: md5
+      md5: c9c418e675ecf09871b1ed997d0caec8
+      size: 792
+    - path: src/Churn_analysis/pipeline/stage01_data_ingestion.py
+      hash: md5
+      md5: 241d46919f55fd42c847e03f411cb696
+      size: 936
+    outs:
+    - path: artifacts/data_ingestion/main_data.csv
+      hash: md5
+      md5: f80fce8a6efe7f0db5bcb0dbad526a6c
+      size: 985371
+  data_validation:
+    cmd: python src/Churn_analysis/pipeline/stage02_data_validation.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 34fce371796346762f1bd3d61f8914e1
+      size: 1155
+    - path: schema.yaml
+      hash: md5
+      md5: c62f7198ed4c73bb1dbeea346c3d8aa3
+      size: 527
+    - path: src/Churn_analysis/components/data_validation.py
+      hash: md5
+      md5: 76360b7dd70e69e7b598c681195a0d4a
+      size: 2078
+    - path: src/Churn_analysis/pipeline/stage02_data_validation.py
+      hash: md5
+      md5: 91ef9d7bda032e40ccddce976436c4e6
+      size: 1005
+    outs:
+    - path: artifacts/data_validation/status.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+    - path: artifacts/data_validation/status_dtype.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+  data_transformation:
+    cmd: python src/Churn_analysis/pipeline/stage03_data_transformation.py
+    deps:
+    - path: artifacts/data_validation/status.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+    - path: artifacts/data_validation/status_dtype.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+    - path: config/config.yaml
+      hash: md5
+      md5: 34fce371796346762f1bd3d61f8914e1
+      size: 1155
+    - path: src/Churn_analysis/components/data_transformation.py
+      hash: md5
+      md5: e4937e80b4b48f7dd31614a6d72dc382
+      size: 3393
+    - path: src/Churn_analysis/pipeline/stage03_data_transformation.py
+      hash: md5
+      md5: 248af95c7317d29a0bc6c93f8554b11e
+      size: 1629
+    outs:
+    - path: artifacts/data_transformation/test.csv
+      hash: md5
+      md5: 1b5218318ac64ee642834ad056bd58b7
+      size: 411921
+    - path: artifacts/data_transformation/train.csv
+      hash: md5
+      md5: 0ab6e25eda9502f5c32ebe947e5b4dbc
+      size: 959548
+  data_clustering:
+    cmd: python src/Churn_analysis/pipeline/stage04_data_clustering.py
+    deps:
+    - path: artifacts/data_ingestion/main_data.csv
+      hash: md5
+      md5: f80fce8a6efe7f0db5bcb0dbad526a6c
+      size: 985371
+    - path: config/config.yaml
+      hash: md5
+      md5: 34fce371796346762f1bd3d61f8914e1
+      size: 1155
+    - path: params.yaml
+      hash: md5
+      md5: 6bee61643dba7fe8afb7f96362076b93
+      size: 256
+    - path: schema.yaml
+      hash: md5
+      md5: c62f7198ed4c73bb1dbeea346c3d8aa3
+      size: 527
+    - path: src/Churn_analysis/components/data_clustering.py
+      hash: md5
+      md5: ef1759f6845edd4b1b047110846924f2
+      size: 1889
+    - path: src/Churn_analysis/pipeline/stage04_data_clustering.py
+      hash: md5
+      md5: 3fac9a89651fa5c9161887dbe3214aaf
+      size: 941
+    outs:
+    - path: artifacts/data_clustering/Clustered_data.csv
+      hash: md5
+      md5: be582cbd1452686583a550f0480e8d18
+      size: 915046
+  model_trainer:
+    cmd: python src/Churn_analysis/pipeline/stage05_model_training.py
+    deps:
+    - path: artifacts/data_transformation/train.csv
+      hash: md5
+      md5: 0ab6e25eda9502f5c32ebe947e5b4dbc
+      size: 959548
+    - path: config/config.yaml
+      hash: md5
+      md5: 34fce371796346762f1bd3d61f8914e1
+      size: 1155
+    - path: params.yaml
+      hash: md5
+      md5: 6bee61643dba7fe8afb7f96362076b93
+      size: 256
+    - path: src/Churn_analysis/components/model_training.py
+      hash: md5
+      md5: 49cb6232c134d6b1a74b4698e991e34b
+      size: 1050
+    - path: src/Churn_analysis/pipeline/stage05_model_training.py
+      hash: md5
+      md5: e7e3d02df4386969fdc2fb5a2624a309
+      size: 928
+  model_evaluation:
+    cmd: python src/Churn_analysis/pipeline/stage06_model_evaluation.py
+    deps:
+    - path: artifacts/data_transformation/test.csv
+      hash: md5
+      md5: 1b5218318ac64ee642834ad056bd58b7
+      size: 411921
+    - path: config/config.yaml
+      hash: md5
+      md5: 34fce371796346762f1bd3d61f8914e1
+      size: 1155
+    - path: params.yaml
+      hash: md5
+      md5: 6bee61643dba7fe8afb7f96362076b93
+      size: 256
+    - path: src/Churn_analysis/components/model_evaluation.py
+      hash: md5
+      md5: c0673e5bc1cc271508a5eb001d36613b
+      size: 2336
+    - path: src/Churn_analysis/pipeline/stage06_model_evaluation.py
+      hash: md5
+      md5: 2466986ccccc1b2be9b58b8b905a843f
+      size: 956
+    outs:
+    - path: artifacts/model_evaluation/scores.json
+      hash: md5
+      md5: fd31678bba2fbb648fa9c0a2d1823515
+      size: 309
